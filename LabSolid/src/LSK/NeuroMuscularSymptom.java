@@ -1,3 +1,5 @@
+package LSK;
+
 
 public class NeuroMuscularSymptom extends Symptom{
 
