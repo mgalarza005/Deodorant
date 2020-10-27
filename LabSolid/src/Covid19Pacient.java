@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Covid19Pacient extends Pacient{
+	String name;
 	Map<Symptom,Integer> symptoms=new HashMap<Symptom,Integer>();
 
 	public void addSymptom(Symptom c, Integer w){
@@ -9,12 +10,15 @@ public class Covid19Pacient extends Pacient{
 	}
 	
 	public void showSymptoms(){
-		for (Symptom s: symptoms)
+		for (Symptom s: symptoms.keySet())
 			s.show();
 	}
 	public void cure(){
-		for (Symptom s: symptoms)
-			s.cure();
+		for (Symptom s: symptoms.keySet())
+			if(!(s instanceof IncurableSymptom)) {
+				s.cure();
+			}
+			
 	}
 
 	double calcCovid19Impact() {

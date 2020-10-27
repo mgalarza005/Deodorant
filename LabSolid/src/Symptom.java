@@ -31,4 +31,10 @@ public abstract class Symptom {
 	public void cure(){
 		System.out.println("treatment applied to: "+name);
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }
