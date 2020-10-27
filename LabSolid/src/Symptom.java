@@ -1,9 +1,10 @@
 
 public abstract class Symptom {
+	public String name;
 	int covidImpact; 
 	int severityIndex;
 	int affectedDays;
-	
+
 	public int getAffectedDays() {
 		return affectedDays;
 	}
@@ -21,5 +22,13 @@ public abstract class Symptom {
 	}
 	public void setSeverityIndex(int severityIndex) {
 		this.severityIndex = severityIndex;
+	}
+
+	public void show(){
+		System.out.println("symptom value :"+name+" severityIndex :"+
+				severityIndex+" covidImpact:"+this.covidImpact);
+	}
+	public void cure(){
+		System.out.println("treatment applied to: "+name);
 	}
 }

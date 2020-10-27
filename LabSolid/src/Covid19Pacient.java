@@ -3,29 +3,41 @@ import java.util.Map;
 
 public class Covid19Pacient extends Pacient{
 	Map<Symptom,Integer> symptoms=new HashMap<Symptom,Integer>();
-	
+
 	public void addSymptom(Symptom c, Integer w){
 		symptoms.put(c,w);
 	}
+	
+	public void showSymptoms(){
+		for (Symptom s: symptoms)
+			s.show();
+	}
+	public void cure(){
+		for (Symptom s: symptoms)
+			s.cure();
+	}
 
-	
 	double calcCovid19Impact() {
-		double afection=0;
-		double increment=0;
+
 		double impact;
-		
+
+		Afection a= new Afection(symptoms);
+
 		//calculate afection
-		for (Symptom s:symptoms.keySet())
-			afection=afection+s.getSeverityIndex()*symptoms.get(s);
-	
-		afection=afection/(symptoms.size());
-		
+		double afection = a.calculateAfections();
+
+
 		//calculate increment
-		if (getYears()>65) increment=afection*0.5;
-		
+		Increment i=new Increment();
+		double increment=i.calculateIncrement(getYears(),afection);
+
+
 		//calculate impact
-		impact=afection+increment;
-		
+		Impact im= new Impact();
+
+		impact= im.calculateImpact(getYears(),afection, increment);
+
+
 		return impact;
 	}
 	int sanatedDays() {
@@ -35,6 +47,6 @@ public class Covid19Pacient extends Pacient{
 				max=s.affectedDays;
 			}
 		return max;
-	
+
 	}
 }
