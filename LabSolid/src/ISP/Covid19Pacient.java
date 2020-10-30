@@ -1,9 +1,9 @@
-package DIP;
+package ISP;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Covid19Pacient extends Pacient{
+public class Covid19Pacient extends Pacient implements Yearsable{
 	String name;
 	Map<Symptom,Integer> symptoms=new HashMap<Symptom,Integer>();
 
@@ -22,34 +22,27 @@ public class Covid19Pacient extends Pacient{
 			}
 			
 	}
+	
 
-
-	public Map<Symptom, Integer> getSymptoms() {
-		return symptoms;
-	}
-
-	public void setSymptoms(Map<Symptom, Integer> symptoms) {
-		this.symptoms = symptoms;
-	}
-
-	double calcCovid19Impact(Afection a, Increment i, Impact im) {
+	double calcCovid19Impact() {
 
 		double impact;
 
 		
 		//calculate afection
+		Afection a= new Afection(symptoms);
 		double afection = a.calculateAfections();
 
 
 		//calculate increment
-		
-		double increment=i.calculateIncrement(getYears(),afection);
+		Increment i=new Increment();
+		double increment=i.calculateIncrement(this,afection);
 
 
 		//calculate impact
-		
+		Impact im= new Impact();
 
-		impact= im.calculateImpact(getYears(),afection, increment);
+		impact= im.calculateImpac(getYears() ,afection, increment);
 
 
 		return impact;
@@ -63,4 +56,6 @@ public class Covid19Pacient extends Pacient{
 		return max;
 
 	}
+
+	
 }

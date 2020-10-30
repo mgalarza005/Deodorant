@@ -1,4 +1,4 @@
-package DIP;
+package ISP;
 
 
 public class Pacient {
